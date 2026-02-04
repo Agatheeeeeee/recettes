@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChefNotes - Mon Grimoire</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>👨‍🍳 ChefNotes</h1>
+        <p>Enregistrez vos pépites culinaires avec tous les détails</p>
+    </header>
+
+    <main class="container">
+        <section class="add-recipe-card">
+            <input type="text" id="recipeUrl" placeholder="Collez un lien (Marmiton, 750g, Cuisine AZ...)">
+            <div class="options">
+                <select id="category">
+                    <option value="Plat">🍲 Plat</option>
+                    <option value="Entrée">🥗 Entrée</option>
+                    <option value="Dessert">🍰 Dessert</option>
+                    <option value="Snack">🍪 Snack</option>
+                </select>
+                <select id="season">
+                    <option value="Permanent">✨ Toute l'année</option>
+                    <option value="Chandeleur">🥞 Chandeleur</option>
+                    <option value="Noël">🎄 Noël</option>
+                    <option value="Été">☀️ Été</option>
+                </select>
+            </div>
+            <button onclick="fetchAndSave()" id="addBtn">Ajouter à ma bibliothèque</button>
+        </section>
+
+        <div id="loader" class="hidden">Analyse de la recette en cours... 🥣</div>
+
+        <nav class="tabs">
+            <button onclick="switchTab('all')" id="tabAll" class="active-tab">📚 Ma Bibliothèque</button>
+            <button onclick="switchTab('fav')" id="tabFav">❤️ Mes Coups de Coeur</button>
+        </nav>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="setCategoryFilter('tous', this)">🍴 Tous</button>
+            <button class="filter-btn" onclick="setCategoryFilter('Entrée', this)">🥗 Entrées</button>
+            <button class="filter-btn" onclick="setCategoryFilter('Plat', this)">🍲 Plats</button>
+            <button class="filter-btn" onclick="setCategoryFilter('Dessert', this)">🍰 Desserts</button>
+            <button class="filter-btn" onclick="setCategoryFilter('Snack', this)">🍪 Snacks</button>
+        </div>
+
+        <div id="recipeGallery" class="gallery"></div>
+    </main>
+
+    <div id="recipeModal" class="modal hidden" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalData"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
